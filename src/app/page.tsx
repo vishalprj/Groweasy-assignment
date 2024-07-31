@@ -16,7 +16,7 @@ export default function Home() {
             title={banner.title}
             description={banner.description}
             cta={banner.cta}
-            image={banner.background}
+            image={banner.image}
             background={banner.background}
           />
         ))}

@@ -1,6 +1,7 @@
 import React from 'react';
 import './banner.css';
 import Image from 'next/image';
+import { FaPencil } from "react-icons/fa6";
 
 interface AdBannerProps {
   title: string;
@@ -22,6 +23,9 @@ const AdBanner = ({ title, description, cta, image, background }: AdBannerProps)
         </div>
         <button className="ad-banner-cta">{cta}</button>
          </div>
+          <div className='edit-icon'>
+            <FaPencil/>
+            </div>
       </div>
     </div>
   );

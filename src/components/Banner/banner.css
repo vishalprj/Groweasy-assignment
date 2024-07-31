@@ -24,6 +24,11 @@
     left: 5rem;
     border-radius: 50% 0 0 50%;
 }
+.edit-icon{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
 
 .ad-banner-content p{
     position: absolute;
