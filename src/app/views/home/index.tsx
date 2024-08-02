@@ -1,6 +1,6 @@
 import { useGetAdBanner } from "@/app/store/queries";
 import AdBanner from "@/app/components/Banner";
-import Banner from "@/app/components/Banner/SecondBanner";
+import Banner from "@/app/components/Banner/secondBanner";
 
 const HomePage = () => {
   const { data } = useGetAdBanner();

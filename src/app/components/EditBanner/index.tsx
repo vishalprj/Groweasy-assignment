@@ -5,7 +5,8 @@ import AdBanner from "../Banner";
 import "./EditBanner.css";
 import { SilderImageData } from "./constants";
 import Drawer from "../drawer";
-import Banner from "../Banner/SecondBanner";
+import Banner from "../Banner/secondBanner";
+import Image from "next/image";
 
 export type EditAdBannerProps = {
   isDrawerOpen: boolean;
@@ -54,7 +55,7 @@ const EditAdBanner = ({
             <div className="image-sider">
               {SilderImageData?.map((img) => (
                 <button key={img} onClick={() => handleClick(img)}>
-                  <img src={img} alt="alt" width={80} height={50} />
+                  <Image src={img} alt="alt" width={80} height={50} />
                 </button>
               ))}
             </div>
