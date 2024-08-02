@@ -7,5 +7,5 @@
         // "titleBar.activeBackground": "#1F23BF",
         "titleBar.activeForeground": "#FCFCFE"
     },
-    "window.title": "${dirty} ${activeEditorMedium}${separator}${rootName}${separator}[Branch: setup]"
+    "window.title": "${dirty} ${activeEditorMedium}${separator}${rootName}${separator}[Branch: edit-banner-component]"
 }
