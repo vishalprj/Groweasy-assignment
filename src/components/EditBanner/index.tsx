@@ -1,49 +1,62 @@
-import { useEditBanner } from "@/app/store/queries";
-import { useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import { useEditBanner, useGetAdBanner } from "@/app/store/queries";
+import { useEffect, useState } from "react";
+import { Toaster } from "react-hot-toast";
+import AdBanner from "../Banner";
+import "./EditBanner.css";
+import { DEFAULT_IMAGE, SilderImageData } from "./constants";
+import Drawer from "../drawer";
 
-const Drawer = ({ isOpen, onClose, children }: any) => {
-  return (
-    <>
-      {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-75">
-          <div className="bg-white rounded-lg p-4 w-full max-w-lg">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-semibold">Edit Profile</h2>
-              <button onClick={onClose} className="text-gray-600 hover:text-gray-800">
-                &times;
-              </button>
-            </div>
-            {children}
-          </div>
-        </div>
-      )}
-    </>
-  );
-};
-
-const EditAdBanner = () => {
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [title, setTitle ] = useState('')
-  const [des, setDes] = useState('')
-
-  const toggleDrawer = () => {
-    setIsDrawerOpen(!isDrawerOpen);
-  };
+const EditAdBanner = ({ isDrawerOpen, toggleDrawer, bannerId }: any) => {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [cta, setCta] = useState("");
+  const [image, setImage] = useState(DEFAULT_IMAGE);
 
   const { mutate: updatedData } = useEditBanner();
+  const { data } = useGetAdBanner();
 
   const handleSubmit = () => {
-     const data = { title , des, id: "1" }
-     updatedData(data)
-     setIsDrawerOpen(false)
-  }
+    const data = { title, description, id: bannerId, cta, image };
+    updatedData(data);
+    toggleDrawer();
+  };
+  const handleClick = (img: string) => {
+    setImage(img);
+  };
+
+  useEffect(() => {
+    const id = data?.find((i) => i.id === bannerId);
+    if (id) {
+      setTitle(id.title);
+      setDescription(id.description);
+      setCta(id.cta);
+      setImage(id.image);
+    }
+  }, [bannerId, data]);
   return (
     <>
-    <Toaster position="top-right"/>
-      <button onClick={toggleDrawer}>Edit Banner</button>
+      <Toaster position="top-right" />
       <Drawer isOpen={isDrawerOpen} onClose={toggleDrawer}>
         <div className="grid gap-4 py-4">
+          <AdBanner
+            title={title}
+            description={description}
+            cta={cta}
+            image={image}
+            background={data?.[0]?.background || ""}
+            isEdit={false}
+            isStyle={true}
+          />
+          <div className="grid grid-cols-1 gap-2 pt-2">
+            <label>Image</label>
+            <div className="image-sider">
+              {SilderImageData?.map((img) => (
+                <button key={img} onClick={() => handleClick(img)}>
+                  <img src={img} alt="alt" width={80} height={50} />
+                </button>
+              ))}
+            </div>
+          </div>
           <div className="grid grid-cols-1 gap-2">
             <label>Title</label>
             <input
@@ -60,14 +73,28 @@ const EditAdBanner = () => {
               className="border rounded p-2"
               type="text"
               placeholder="Enter description"
-              value={des}
-              onChange={(e) => setDes(e.target.value)}
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </div>
+          <div className="grid grid-cols-1 gap-2">
+            <label>Button Text</label>
+            <input
+              className="border rounded p-2"
+              type="text"
+              placeholder="Enter Button Text"
+              value={cta}
+              onChange={(e) => setCta(e.target.value)}
             />
           </div>
         </div>
-        <div className="flex justify-end">
-          <button type="submit" className="bg-blue-500 text-white rounded p-2" onClick={handleSubmit}>
-            Save changes
+        <div className="flex">
+          <button
+            type="submit"
+            className="bg-green-500 text-white rounded p-2 w-full"
+            onClick={handleSubmit}
+          >
+            Done
           </button>
         </div>
       </Drawer>
