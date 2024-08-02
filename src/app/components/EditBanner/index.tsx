@@ -1,58 +1,61 @@
-import { useEditBanner, useGetAdBanner } from "@/app/store/queries";
-import { useEffect, useState } from "react";
+import { useEditBanner } from "@/app/store/queries";
+import { useState } from "react";
 import { Toaster } from "react-hot-toast";
 import AdBanner from "../Banner";
 import "./EditBanner.css";
-import { DEFAULT_IMAGE, SilderImageData } from "./constants";
+import { SilderImageData } from "./constants";
 import Drawer from "../drawer";
+import Banner from "../Banner/secondBanner";
+import Image from "next/image";
 
-const EditAdBanner = ({ isDrawerOpen, toggleDrawer, bannerId }: any) => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [cta, setCta] = useState("");
-  const [image, setImage] = useState(DEFAULT_IMAGE);
+export type EditAdBannerProps = {
+  isDrawerOpen: boolean;
+  toggleDrawer: () => void;
+  banner: {
+    id: string;
+    title: string;
+    description: string;
+    cta: string;
+    image: string;
+    background: string;
+    type?: string;
+  };
+};
 
+const EditAdBanner = ({
+  isDrawerOpen,
+  toggleDrawer,
+  banner,
+}: EditAdBannerProps) => {
+  const [bannerState, setBannerState] = useState({ ...banner });
   const { mutate: updatedData } = useEditBanner();
-  const { data } = useGetAdBanner();
 
   const handleSubmit = () => {
-    const data = { title, description, id: bannerId, cta, image };
-    updatedData(data);
+    updatedData(bannerState);
     toggleDrawer();
   };
-  const handleClick = (img: string) => {
-    setImage(img);
-  };
 
-  useEffect(() => {
-    const id = data?.find((i) => i.id === bannerId);
-    if (id) {
-      setTitle(id.title);
-      setDescription(id.description);
-      setCta(id.cta);
-      setImage(id.image);
-    }
-  }, [bannerId, data]);
+  const handleClick = (img: string) => {
+    setBannerState((prev) => {
+      return { ...prev, image: img };
+    });
+  };
   return (
     <>
       <Toaster position="top-right" />
       <Drawer isOpen={isDrawerOpen} onClose={toggleDrawer}>
         <div className="grid gap-4 py-4">
-          <AdBanner
-            title={title}
-            description={description}
-            cta={cta}
-            image={image}
-            background={data?.[0]?.background || ""}
-            isEdit={false}
-            isStyle={true}
-          />
+          {bannerState.type === "banner" ? (
+            <AdBanner bannerData={bannerState} isEdit={false} isStyle={true} />
+          ) : (
+            <Banner bannerData={bannerState} isEdit={false} isStyle={true} />
+          )}
           <div className="grid grid-cols-1 gap-2 pt-2">
             <label>Image</label>
             <div className="image-sider">
               {SilderImageData?.map((img) => (
                 <button key={img} onClick={() => handleClick(img)}>
-                  <img src={img} alt="alt" width={80} height={50} />
+                  <Image src={img} alt="alt" width={80} height={50} />
                 </button>
               ))}
             </div>
@@ -63,8 +66,12 @@ const EditAdBanner = ({ isDrawerOpen, toggleDrawer, bannerId }: any) => {
               className="border rounded p-2"
               type="text"
               placeholder="Enter title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              defaultValue={banner.title}
+              onChange={(e) => {
+                setBannerState((prev) => {
+                  return { ...prev, title: e.target.value };
+                });
+              }}
             />
           </div>
           <div className="grid grid-cols-1 gap-2">
@@ -73,8 +80,12 @@ const EditAdBanner = ({ isDrawerOpen, toggleDrawer, bannerId }: any) => {
               className="border rounded p-2"
               type="text"
               placeholder="Enter description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              defaultValue={banner.description}
+              onChange={(e) =>
+                setBannerState((prev) => {
+                  return { ...prev, description: e.target.value };
+                })
+              }
             />
           </div>
           <div className="grid grid-cols-1 gap-2">
@@ -83,8 +94,12 @@ const EditAdBanner = ({ isDrawerOpen, toggleDrawer, bannerId }: any) => {
               className="border rounded p-2"
               type="text"
               placeholder="Enter Button Text"
-              value={cta}
-              onChange={(e) => setCta(e.target.value)}
+              defaultValue={banner.cta}
+              onChange={(e) =>
+                setBannerState((prev) => {
+                  return { ...prev, cta: e.target.value };
+                })
+              }
             />
           </div>
         </div>

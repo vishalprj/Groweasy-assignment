@@ -1,30 +1,24 @@
 import React, { useState } from "react";
 import "./banner.css";
 import { FaPencil } from "react-icons/fa6";
-import EditAdBanner from "../EditBanner";
 import { Toaster } from "react-hot-toast";
+import EditAdBanner from "../../EditBanner";
+import Image from "next/image";
 
-export type AdBannerProps = {
-  title: string;
-  description: string;
-  cta: string;
-  image: string;
-  background: string;
+export type BannerProps = {
+  bannerData: {
+    title: string;
+    description: string;
+    cta: string;
+    image: string;
+    background: string;
+    id: string;
+  };
   isEdit: boolean;
   isStyle: boolean;
-  id?: String;
 };
 
-const AdBanner = ({
-  title,
-  description,
-  cta,
-  image,
-  background,
-  isEdit,
-  id,
-  isStyle = false,
-}: AdBannerProps) => {
+const Banner = ({ bannerData, isEdit, isStyle = false }: BannerProps) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
@@ -35,7 +29,7 @@ const AdBanner = ({
       <div className={isStyle ? "container" : ""}>
         <div
           className="ad-banner"
-          style={{ backgroundImage: `url(${background})` }}
+          style={{ backgroundImage: `url(${bannerData.background})` }}
         >
           <div className="ad-banner-container">
             <div
@@ -43,12 +37,20 @@ const AdBanner = ({
                 isStyle ? "edit-ad-banner-content" : "ad-banner-content"
               }
             >
-              <h1 className="text-2xl font-bold">{title}</h1>
-              <p>{description}</p>
-              <div className="ad-banner-image">
-                <img className="ad-banner-image" src={image} alt={title} />
+              <h1 className="text-2xl font-bold ml-16 text-white">
+                {bannerData.title}
+              </h1>
+              <p className="ad-banner-info">{bannerData.description}</p>
+              <div className="ad-banner-images">
+                <Image
+                  className="ad-banner-images"
+                  src={bannerData.image}
+                  alt={bannerData.title}
+                  height={187}
+                  width={185}
+                />
               </div>
-              <button className="ad-banner-cta">{cta}</button>
+              <button className="ad-banners-cta">{bannerData.cta}</button>
             </div>
             {isEdit && (
               <div className="edit-icon">
@@ -61,7 +63,7 @@ const AdBanner = ({
               <EditAdBanner
                 isDrawerOpen={isDrawerOpen}
                 toggleDrawer={toggleDrawer}
-                bannerId={id}
+                banner={bannerData}
               />
             )}
           </div>
@@ -71,4 +73,4 @@ const AdBanner = ({
   );
 };
 
-export default AdBanner;
+export default Banner;
