@@ -1,23 +1,24 @@
 import React, { useState } from "react";
 import "./banner.css";
 import { FaPencil } from "react-icons/fa6";
-import EditAdBanner from "../EditBanner";
 import { Toaster } from "react-hot-toast";
+import EditAdBanner from "../../EditBanner";
 
-export type AdBannerProps = {
-  isEdit: boolean;
-  isStyle: boolean;
+export type BannerProps = {
   banner: {
-    id: string;
     title: string;
     description: string;
     cta: string;
     image: string;
     background: string;
+    id: string;
   };
+
+  isEdit: boolean;
+  isStyle: boolean;
 };
 
-const AdBanner = ({ isEdit, banner, isStyle = false }: AdBannerProps) => {
+const Banner = ({ banner, isEdit, isStyle = false }: BannerProps) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
@@ -36,7 +37,9 @@ const AdBanner = ({ isEdit, banner, isStyle = false }: AdBannerProps) => {
                 isStyle ? "edit-ad-banner-content" : "ad-banner-content"
               }
             >
-              <h1 className="text-2xl font-bold">{banner.title}</h1>
+              <h1 className="text-2xl font-bold ml-16 text-white">
+                {banner.title}
+              </h1>
               <p>{banner.description}</p>
               <div className="ad-banner-image">
                 <img
@@ -68,4 +71,4 @@ const AdBanner = ({ isEdit, banner, isStyle = false }: AdBannerProps) => {
   );
 };
 
-export default AdBanner;
+export default Banner;
