@@ -6,7 +6,16 @@ import "./EditBanner.css";
 import { DEFAULT_IMAGE, SilderImageData } from "./constants";
 import Drawer from "../drawer";
 
-const EditAdBanner = ({ isDrawerOpen, toggleDrawer, bannerId }: any) => {
+type EditAdBannerProps = {
+  isDrawerOpen: boolean;
+  toggleDrawer: () => void;
+  bannerId?: string;
+};
+const EditAdBanner = ({
+  isDrawerOpen,
+  toggleDrawer,
+  bannerId,
+}: EditAdBannerProps) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [cta, setCta] = useState("");

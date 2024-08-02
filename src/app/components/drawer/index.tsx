@@ -1,8 +1,12 @@
+import { ReactNode } from "react";
+
 type DrawerProps = {
-  isOpen: "";
+  isOpen: boolean;
+  onClose: () => void;
+  children: ReactNode;
 };
 
-const Drawer = ({ isOpen, onClose, children }: any) => {
+const Drawer = ({ isOpen, onClose, children }: DrawerProps) => {
   return (
     <>
       {isOpen && (

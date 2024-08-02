@@ -12,7 +12,7 @@ export type AdBannerProps = {
   background: string;
   isEdit: boolean;
   isStyle: boolean;
-  id?: String;
+  id?: string;
 };
 
 const AdBanner = ({
