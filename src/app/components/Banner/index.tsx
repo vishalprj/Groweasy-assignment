@@ -3,6 +3,7 @@ import "./banner.css";
 import { FaPencil } from "react-icons/fa6";
 import EditAdBanner from "../EditBanner";
 import { Toaster } from "react-hot-toast";
+import Image from "next/image";
 
 export type AdBannerProps = {
   isEdit: boolean;
@@ -39,10 +40,12 @@ const AdBanner = ({ isEdit, bannerData, isStyle = false }: AdBannerProps) => {
               <h1 className="text-2xl font-bold">{bannerData.title}</h1>
               <p>{bannerData.description}</p>
               <div className="ad-banner-image">
-                <img
+                <Image
                   className="ad-banner-image"
                   src={bannerData.image}
                   alt={bannerData.title}
+                  height={206}
+                  width={187}
                 />
               </div>
               <button className="ad-banner-cta">{bannerData.cta}</button>
