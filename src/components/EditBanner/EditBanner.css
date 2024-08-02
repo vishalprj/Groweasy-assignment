@@ -1,0 +1,15 @@
+.drawer-container {
+  height: 37rem;
+  overflow: auto;
+}
+
+.image-sider {
+  display: flex;
+  gap: 0.5rem;
+  overflow: auto;
+}
+
+.image-sider img {
+  border-radius: 50%;
+  max-width: max-content;
+}
