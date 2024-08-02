@@ -7,10 +7,9 @@ import { SilderImageData } from "./constants";
 import Drawer from "../drawer";
 import Banner from "../Banner/SecondBanner";
 
-type EditAdBannerProps = {
+export type EditAdBannerProps = {
   isDrawerOpen: boolean;
   toggleDrawer: () => void;
-  bannerId: string;
   banner: {
     id: string;
     title: string;
@@ -21,6 +20,7 @@ type EditAdBannerProps = {
     type?: string;
   };
 };
+
 const EditAdBanner = ({
   isDrawerOpen,
   toggleDrawer,
@@ -28,10 +28,12 @@ const EditAdBanner = ({
 }: EditAdBannerProps) => {
   const [bannerState, setBannerState] = useState({ ...banner });
   const { mutate: updatedData } = useEditBanner();
+
   const handleSubmit = () => {
     updatedData(bannerState);
     toggleDrawer();
   };
+
   const handleClick = (img: string) => {
     setBannerState((prev) => {
       return { ...prev, image: img };
@@ -43,9 +45,9 @@ const EditAdBanner = ({
       <Drawer isOpen={isDrawerOpen} onClose={toggleDrawer}>
         <div className="grid gap-4 py-4">
           {bannerState.type === "banner" ? (
-            <AdBanner banner={bannerState} isEdit={false} isStyle={true} />
+            <AdBanner bannerData={bannerState} isEdit={false} isStyle={true} />
           ) : (
-            <Banner banner={bannerState} isEdit={false} isStyle={true} />
+            <Banner bannerData={bannerState} isEdit={false} isStyle={true} />
           )}
           <div className="grid grid-cols-1 gap-2 pt-2">
             <label>Image</label>
@@ -64,11 +66,11 @@ const EditAdBanner = ({
               type="text"
               placeholder="Enter title"
               defaultValue={banner.title}
-              onChange={(e) =>
+              onChange={(e) => {
                 setBannerState((prev) => {
                   return { ...prev, title: e.target.value };
-                })
-              }
+                });
+              }}
             />
           </div>
           <div className="grid grid-cols-1 gap-2">

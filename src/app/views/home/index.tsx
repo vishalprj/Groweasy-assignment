@@ -10,9 +10,9 @@ const HomePage = () => {
       {data?.map((banner) => (
         <div key={banner.id} className="ad-banners p-10">
           {banner.type === "banner" ? (
-            <AdBanner banner={banner} isEdit={true} isStyle={false} />
+            <AdBanner bannerData={banner} isEdit={true} isStyle={false} />
           ) : (
-            <Banner banner={banner} isEdit={true} isStyle={false} />
+            <Banner bannerData={banner} isEdit={true} isStyle={false} />
           )}
         </div>
       ))}

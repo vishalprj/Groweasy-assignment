@@ -27,13 +27,12 @@
   text-align: center;
   color: black;
 }
-.ad-banner-image {
-  height: 206px;
-  width: 187px;
-  position: absolute;
-  top: 2.6rem;
-  left: 5rem;
-  border-radius: 50% 0 0 50%;
+.ad-banner-images {
+  height: 187px !important;
+  width: 185px !important;
+  position: absolute !important;
+  top: 3.4rem !important;
+  border-radius: 50% !important;
 }
 .edit-icon {
   position: absolute;
@@ -46,33 +45,29 @@
   text-align: center;
   color: black;
 }
-.ad-banner-content button {
-  position: absolute;
-  top: 13rem;
-  left: 0.2rem;
-  color: orange;
-  background-color: black;
-}
 
 .ad-banner h2 {
   margin: 0;
   font-size: 24px;
 }
 
-.ad-banner p {
-  margin: 10px 0;
-  font-size: 16px;
+.ad-banner-info {
+  margin: 10px 0 !important;
+  font-size: 13px !important;
+  margin-top: 2rem !important;
+  margin-left: 3rem !important;
 }
 
-.ad-banner-cta {
+.ad-banners-cta {
   border: none;
   padding: 10px 20px;
   cursor: pointer;
   font-size: 16px;
   border-radius: 5px;
-  position: absolute;
-  top: 13rem;
-  left: 0.2rem;
-  color: orange;
-  background-color: black;
+  position: absolute !important;
+  top: 14rem !important;
+  left: 12.2rem !important;
+  color: #fff !important;
+  width: max-content !important;
+  background-color: #43c9f6 !important;
 }

@@ -7,7 +7,7 @@ import { Toaster } from "react-hot-toast";
 export type AdBannerProps = {
   isEdit: boolean;
   isStyle: boolean;
-  banner: {
+  bannerData: {
     id: string;
     title: string;
     description: string;
@@ -17,7 +17,7 @@ export type AdBannerProps = {
   };
 };
 
-const AdBanner = ({ isEdit, banner, isStyle = false }: AdBannerProps) => {
+const AdBanner = ({ isEdit, bannerData, isStyle = false }: AdBannerProps) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
@@ -28,7 +28,7 @@ const AdBanner = ({ isEdit, banner, isStyle = false }: AdBannerProps) => {
       <div className={isStyle ? "container" : ""}>
         <div
           className="ad-banner"
-          style={{ backgroundImage: `url(${banner.background})` }}
+          style={{ backgroundImage: `url(${bannerData.background})` }}
         >
           <div className="ad-banner-container">
             <div
@@ -36,16 +36,16 @@ const AdBanner = ({ isEdit, banner, isStyle = false }: AdBannerProps) => {
                 isStyle ? "edit-ad-banner-content" : "ad-banner-content"
               }
             >
-              <h1 className="text-2xl font-bold">{banner.title}</h1>
-              <p>{banner.description}</p>
+              <h1 className="text-2xl font-bold">{bannerData.title}</h1>
+              <p>{bannerData.description}</p>
               <div className="ad-banner-image">
                 <img
                   className="ad-banner-image"
-                  src={banner.image}
-                  alt={banner.title}
+                  src={bannerData.image}
+                  alt={bannerData.title}
                 />
               </div>
-              <button className="ad-banner-cta">{banner.cta}</button>
+              <button className="ad-banner-cta">{bannerData.cta}</button>
             </div>
             {isEdit && (
               <div className="edit-icon">
@@ -58,7 +58,7 @@ const AdBanner = ({ isEdit, banner, isStyle = false }: AdBannerProps) => {
               <EditAdBanner
                 isDrawerOpen={isDrawerOpen}
                 toggleDrawer={toggleDrawer}
-                banner={banner}
+                banner={bannerData}
               />
             )}
           </div>
