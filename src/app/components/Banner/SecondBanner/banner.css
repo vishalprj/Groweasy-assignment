@@ -1,0 +1,73 @@
+.container {
+  margin-left: 2.3rem;
+}
+
+.ad-banner {
+  position: relative;
+  max-width: 350px;
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ad-banner-content {
+  position: absolute;
+  top: 8%;
+  left: 0.2rem;
+  text-align: center;
+  color: black;
+}
+.edit-ad-banner-content {
+  position: absolute;
+  top: 8%;
+  left: 0.2rem;
+  text-align: center;
+  color: black;
+}
+.ad-banner-images {
+  height: 187px !important;
+  width: 185px !important;
+  position: absolute !important;
+  top: 3.4rem !important;
+  border-radius: 50% !important;
+}
+.edit-icon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.ad-banner-content p {
+  position: absolute;
+  text-align: center;
+  color: black;
+}
+
+.ad-banner h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.ad-banner-info {
+  margin: 10px 0 !important;
+  font-size: 13px !important;
+  margin-top: 2rem !important;
+  margin-left: 3rem !important;
+}
+
+.ad-banners-cta {
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  position: absolute !important;
+  top: 14rem !important;
+  left: 12.2rem !important;
+  color: #fff !important;
+  width: max-content !important;
+  background-color: #43c9f6 !important;
+}
