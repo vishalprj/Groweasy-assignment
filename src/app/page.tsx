@@ -1,11 +1,8 @@
 'use client'
-import { Banner } from "./api/data/bannerData";
-import { useQuery } from 'react-query';
-import { fetchBannerData } from "./store/queries";
+import { useGetAdBanner } from "./store/queries";
 import AdBanner from "@/components/Banner";
 export default function Home() {
-    const { data, error, isLoading } = useQuery<Banner[]>('bannerData', fetchBannerData);
-    console.log("🚀 ~ Home ~ data:", data)
+    const { data } = useGetAdBanner();
   return (
     <>
     <h1>knjnj</h1>
