@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./banner.css";
 import { FaPencil } from "react-icons/fa6";
-import EditAdBanner from "../EditBanner";
+import EditAdBanner from "../editBanner";
 import { Toaster } from "react-hot-toast";
 import Image from "next/image";
 
