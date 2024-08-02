@@ -6,7 +6,7 @@ import "./EditBanner.css";
 import { SilderImageData } from "./constants";
 import Drawer from "../drawer";
 import Image from "next/image";
-import Banner from "../banner/secondBanner/index";
+import Banner from "../secondBanner/index";
 
 export type EditAdBannerProps = {
   isDrawerOpen: boolean;
