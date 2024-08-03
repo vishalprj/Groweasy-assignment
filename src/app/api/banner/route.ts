@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "../../../../prisma/prisma";
 
-export async function GET(request: NextRequest) {
+export async function POST(request: NextRequest) {
   try {
     const allBanners = await prisma.banner.findMany();
     return NextResponse.json(allBanners);

@@ -4,7 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { Banner } from "../api/data/bannerData";
 
 const fetchBannerData = async () => {
-  const response = await axios.get("/api/banner");
+  const response = await axios.post("/api/banner");
   if (!response.data) {
     throw new Error("Response was not ok");
   }
@@ -17,7 +17,6 @@ export const useGetAdBanner = () => {
 };
 
 const editBannerData = (data: any) => {
-  console.log("🚀 ~ editBannerData ~ data:", data);
   return axios.put("/api/editbanner", data);
 };
 
