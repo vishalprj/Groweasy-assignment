@@ -1,20 +1,22 @@
 import { NextRequest, NextResponse } from "next/server";
-import { bannerData } from "../data/bannerData";
+import prisma from "../../../../prisma/prisma";
 
 export async function PATCH(req: NextRequest) {
   try {
-    const { id, title, description, cta, image } = await req.json();
-    const banner = bannerData.find((i) => i.id === id);
-    if (!banner) {
-      return NextResponse.json({ error: "Banner not found" }, { status: 404 });
-    }
+    const body = await req.json();
+    const updateUser = await prisma.banner.update({
+      where: {
+        id: body.id,
+      },
+      data: {
+        title: body.title,
+        description: body.description,
+        cta: body.cta,
+        image: body.image,
+      },
+    });
 
-    banner.title = title ?? banner.title;
-    banner.description = description ?? banner.description;
-    banner.cta = cta ?? banner.cta;
-    banner.image = image ?? banner.image;
-
-    return NextResponse.json(banner);
+    return NextResponse.json(updateUser);
   } catch (error) {
     return NextResponse.json(
       { error: "Failed to edit AdBanner" },

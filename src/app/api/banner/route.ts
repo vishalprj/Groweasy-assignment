@@ -1,9 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { bannerData } from "../data/bannerData";
+import prisma from "../../../../prisma/prisma";
 
 export async function GET(request: NextRequest) {
   try {
-    return NextResponse.json(bannerData);
+    const allBanners = await prisma.banner.findMany();
+    return NextResponse.json(allBanners);
   } catch (error) {
     return NextResponse.json(
       { error: "Failed to fetch banner data" },
