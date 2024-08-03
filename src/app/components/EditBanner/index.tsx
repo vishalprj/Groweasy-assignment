@@ -1,12 +1,12 @@
 import { useEditBanner } from "@/app/store/queries";
 import { useState } from "react";
 import { Toaster } from "react-hot-toast";
-import AdBanner from "../banner";
 import "./EditBanner.css";
 import { SilderImageData } from "./constants";
 import Drawer from "../drawer";
 import Image from "next/image";
-import Banner from "../secondBanner/index";
+import Banner from "../secondBanner";
+import AdBanner from "../banner";
 
 export type EditAdBannerProps = {
   isDrawerOpen: boolean;

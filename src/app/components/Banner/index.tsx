@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "./banner.css";
 import { FaPencil } from "react-icons/fa6";
-import EditAdBanner from "../editBanner";
-import { Toaster } from "react-hot-toast";
 import Image from "next/image";
+import { Toaster } from "react-hot-toast";
+import EditAdBanner from "../editBanner";
 
 export type AdBannerProps = {
   isEdit: boolean;
