@@ -4,9 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { Banner } from "../api/data/bannerData";
 
 const fetchBannerData = async () => {
-  const response = await axios.get(
-    "https://groweasy-assignment-vishal26188-vishal26188s-projects.vercel.app/api/banner"
-  );
+  const response = await axios.get("/api/banner");
   if (!response.data) {
     throw new Error("Response was not ok");
   }
@@ -19,10 +17,7 @@ export const useGetAdBanner = () => {
 };
 
 const editBannerData = (data: any) => {
-  return axios.patch(
-    "https://groweasy-assignment-vishal26188-vishal26188s-projects.vercel.app/api/editbanner",
-    data
-  );
+  return axios.patch("/api/editbanner", data);
 };
 
 // hook for updating AdBanner
