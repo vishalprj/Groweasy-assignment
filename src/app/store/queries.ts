@@ -18,7 +18,7 @@ export const useGetAdBanner = () => {
 
 const editBannerData = (data: any) => {
   console.log("🚀 ~ editBannerData ~ data:", data);
-  return axios.put("/api/editbanner", data);
+  return axios.patch("/api/editbanner", data);
 };
 
 // hook for updating AdBanner
