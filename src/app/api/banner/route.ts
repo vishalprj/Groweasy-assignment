@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { bannerData } from "../data/bannerData";
 import prisma from "../../../../prisma/prisma";
 
 export async function GET(request: NextRequest) {
