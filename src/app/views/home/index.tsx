@@ -1,5 +1,5 @@
-import AdBanner from "@/app/components/banner";
-import Banner from "@/app/components/secondBanner";
+import AdBanner from "../../components/banner/index";
+import Banner from "../../components/secondBanner/index";
 import { useGetAdBanner } from "@/app/store/queries";
 
 const HomePage = () => {
